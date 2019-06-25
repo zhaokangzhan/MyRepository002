@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="domain">
+	<!-- 建立类与表关系映射 -->
+	<class name="domain.Student" table="student" >
+		<!-- 建立类中的属性与表中的主键对应 -->
+		<id name="id" column="Id">
+			<generator class="native"></generator>
+		</id>
+		<!-- 建立类中的普通的属性和表的字段的对应 -->
+		
+		<property name="student_uuid" column="student_uuid"  />
+		<property name="student_id" column="student_id" />
+		<property name="student_name" column="student_name" />
+		<property name="student_idcard" column="student_idcard" />
+		<property name="student_active" column="student_active" />
+
+	</class>
+
+</hibernate-mapping>

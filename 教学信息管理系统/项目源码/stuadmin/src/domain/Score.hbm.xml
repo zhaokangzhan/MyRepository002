@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="domain">
+	<!-- 建立类与表关系映射 -->
+	<class name="domain.Score" table="score" >
+		<!-- 建立类中的属性与表中的主键对应 -->
+		<id name="id" column="Id">
+			<generator class="native"></generator>
+		</id>
+		<!-- 建立类中的普通的属性和表的字段的对应 -->
+		
+		<property name="score_uuid" column="score_uuid"  />
+		<property name="score_id" column="score_id" />
+		<property name="user_id" column="user_id" />
+		<property name="user_name" column="user_name" />
+		<property name="course_name" column="course_name" />
+		<property name="score" column="score" />
+        	<property name="score_active" column="score_active" />
+	</class>
+	
+	
+</hibernate-mapping>

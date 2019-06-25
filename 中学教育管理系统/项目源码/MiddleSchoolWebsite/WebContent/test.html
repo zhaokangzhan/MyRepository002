@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>中学网</title>
+    <!-- Bootstrap -->
+  <link href="css/bootstrap.css" rel="stylesheet"/>
+		<link href="css/bootstrap.min.css" rel="stylesheet"/>
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js" ></script>
+		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+		<script language="javascript" type="text/javascript">
+
+
+  function check()
+	{
+		testname1=document.testform.RadioGroup1.value;
+		testname2=document.testform.RadioGroup2.value;
+		testname3=document.testform.RadioGroup3.value;
+		testname4=document.testform.RadioGroup4.value;
+		if(testname1=="a1"&testname2=="b2"&testname3=="c3"&testname4=="d4")
+		{
+			alert("选择正确，本题正确答案为ABCD");
+		 	return false;
+		location.href='test.html';
+		}else{
+			alert("选择错误,本题正确答案为ABCD");
+			 	return false;
+			 	location.href='test.html';
+		}
+		
+              
+		
+		return false;
+  
+}
+
+
+		</script>
+  </head>
+  <body>
+    
+<div id="outline" style="border:rosybrown double;margin: 0% 6% 0% 6%;background-color: #D3D4D4;">
+	
+
+  	<!--logo部分-->
+		
+
+		<!--导航栏-->
+		<div class="container" style="margin-top: 5px;">
+			<nav class="navbar navbar-inverse">
+				<div class="container-fluid">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					        <span class="sr-only">Toggle navigation</span>
+					        <span class="icon-bar"></span>
+					        <span class="icon-bar"></span>
+					        <span class="icon-bar"></span>
+					    </button>
+					  
+					<a class="navbar-brand" href="index.html">《《返回首页</a>
+				<li>
+						
+					</div>
+
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						
+						<ul class="nav navbar-nav">
+				<li>
+								<a href="#">客户端</a>
+							</li>
+							<li>
+								<a href="#">学生专区</a>
+							</li>
+							<li>
+								<a href="#">教师专区</a>
+							</li>
+							
+							
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">管理中心 <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									
+									<li role="separator" class="divider"></li>
+									<li>
+										<a href="#">维护中心</a>
+									</li>
+									<li role="separator" class="divider"></li>
+									<li>
+										<a href="#">系统管理</a>
+									</li>
+									<li>
+								  <a href="#">退出</a>
+							    </li>
+								</ul>
+							</li>
+						</ul>
+						
+					</div>
+				</div>
+			</nav>
+		</div>
+		
+		<!--注册-->
+	
+		<div class="container" style="margin-top: 5px;">
+		<form action="#"  method="post" name="testform" onSubmit="return check()">
+<table  class="table">
+<tr>
+  <td><strong>一、单选题</strong></td><td  >
+</td>
+</tr>
+<tr>
+	<tr>
+  <td><strong>1、一个中学生的质量大约为（　　　）</strong></td><td  >
+</td></tr>
+<tr>
+  <td><label>
+            <input type="radio" name="RadioGroup1" value="a1" id="RadioGroup1_a1" />
+          A．500kg
+        </label>
+          &nbsp;
+          <label>
+              <input type="radio" name="RadioGroup1" value="b1" id="RadioGroup1_b1" />
+            B．50kg</label>
+            &nbsp;
+            <label>       	
+            <input type="radio" name="RadioGroup1" value="c1" id="RadioGroup1_c1" />
+            C．5kg
+        </label>
+          &nbsp;
+          &nbsp;
+          <label>
+              <input type="radio" name="RadioGroup1" value="d1" id="RadioGroup1_d1" />
+           D．0.5kg</label>  </td><td></td>
+</tr>
+
+	<tr>
+  <td><strong>2、一般物体都有热胀冷缩现象，物体受热膨胀时，它的质量（　　　） </strong></td><td  >
+</td></tr>
+<tr>
+  <td><label>
+            <input type="radio" name="RadioGroup2" value="a2" id="RadioGroup1_a2" />
+          A、不变 
+        </label>
+          &nbsp;
+          <label>
+              <input type="radio" name="RadioGroup2" value="b2" id="RadioGroup1_b2" />
+            B、增大 </label>
+            &nbsp;
+            <label>       	
+            <input type="radio" name="RadioGroup2" value="c2" id="RadioGroup1_c2" />
+            C、减小
+        </label>
+          &nbsp;
+          <label>
+              <input type="radio" name="RadioGroup2" value="d2" id="RadioGroup1_d2" />
+            D、都可能</label>  </td><td></td>
+</tr>         
+  <tr>
+	<tr>
+  <td><strong>3、托盘天平是科学实验中常用的仪器．下列关于其使用的说法中不正确的是（　　　） </strong></td><td  >
+</td></tr>
+<tr>
+  <td><label>
+            <input type="radio" name="RadioGroup3" value="a3" id="RadioGroup1_a3" />
+          A．称量物体前首先应估计被测物体的质量，以免超过量程
+        </label>
+          &nbsp;
+          <label>
+              <input type="radio" name="RadioGroup3" value="b3" id="RadioGroup1_b3" />
+            B．称量时，向右移动游码，相当于向右盘加砝码 </label>
+            &nbsp;
+            <label>       	
+            <input type="radio" name="RadioGroup3" value="c3" id="RadioGroup1_c3" />
+         C．不管桌面是否水平，只要调平横梁就可以称量
+        </label>
+          &nbsp;
+          <label>
+              <input type="radio" name="RadioGroup3" value="d3" id="RadioGroup1_d3" />
+            D．不能把化学药品直接放在托盘称量</label>  </td><td></td>
+</tr>             
+ <tr>
+  <td><strong>4、“用天平称物体质量”的实验中，张强同学用已调节好的天平在称物体质量时，通过增、减砝码后指针偏在分度盘中线左边一点，这时应该（　　　） </strong></td><td  >
+</td></tr>
+<tr>
+  <td><label>
+            <input type="radio" name="RadioGroup4" value="a4" id="RadioGroup1_a4" />
+         A．把横梁右端螺母向右旋出一些
+        </label>
+          &nbsp;
+          <label>
+              <input type="radio" name="RadioGroup4" value="b4" id="RadioGroup1_b4" />
+            B．把横梁右端螺母向左旋进一些 </label>
+            &nbsp;
+            <label>       	
+            <input type="radio" name="RadioGroup4" value="c4" id="RadioGroup1_c4" />
+            C．把天平右盘的砝码减少一些
+        </label>
+          &nbsp;
+          <label>
+              <input type="radio" name="RadioGroup4" value="d4" id="RadioGroup1_d4" />
+            D．向右移动游码</label>  </td><td></td>
+</tr>          
+<tr>
+   <td>
+   	
+   	<br /> 
+   
+  <input name="sub" type="reset" value="清 &nbsp;&nbsp;空">
+  
+     &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input name="sub" type="submit" value="提 &nbsp;&nbsp;交" > &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<hr/> </td></tr>
+</table>
+</form>
+		</div>
+		
+		
+		
+    				</div>
+		</div>
+		
+    	
+	
+		<!--友情链接和版权信息-->
+		<div class="container" style="margin-top: 10px;">
+			<div class="row">
+				<div class="" align="center">
+					<ul class="list-inline">
+						<li><a href="info.html">关于我们</a></li>
+						<li><a>联系我们</a></li>
+						<li><a>招贤纳士</a></li>
+						<li><a>法律声明</a></li>
+						<li><a>友情链接</a></li>
+						<li><a>支付方式</a></li>
+						<li><a>配送方式</a></li>
+						<li><a>服务声明</a></li>
+						<li><a>广告声明</a></li>
+						<li><a>加入我们</a></li>
+					</ul>
+					<ul class="list-inline">
+						<li><p align="center">用户反馈&nbsp;|||&nbsp;客服&nbsp;&nbsp;QQ:3543338298&nbsp;|||&nbsp;
+	微信:asdfzhan&nbsp;|||&nbsp;电话号码:14354619562&nbsp;|||&nbsp;其它帮助 &nbsp;&nbsp; 
+	 &nbsp;&nbsp;<a href="fabu.php"><strong>后台管理&gt;&gt;<strong></a>	</p></li>
+						
+					</ul>
+					
+				</div>
+				
+				<div style="text-align: center;margin-top: 5px;margin-bottom:20px;">
+				
+				</div>
+			</div>
+		</div>
+		
+	
+
+		</div>
+		
+	</body>
+
+</html>

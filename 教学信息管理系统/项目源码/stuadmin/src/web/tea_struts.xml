@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- Struts2为了管理Action的配置，通过包进行管理。 -->
+	<!-- 配置Struts2的包 ================ -->
+	
+	<package name="tea" extends="struts-default" namespace="/">
+		<!-- 配置Action================ -->
+		<action name="tea_*" class="teacherAction" method="{1}">
+			
+		
+		</action>
+	
+		
+	</package>
+	
+		
+</struts>

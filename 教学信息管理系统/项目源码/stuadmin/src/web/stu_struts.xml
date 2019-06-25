@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- Struts2为了管理Action的配置，通过包进行管理。 -->
+	<!-- 配置Struts2的包 ================ -->
+	<package name="stu" extends="struts-default" namespace="/">
+		<!-- 配置Action================ -->
+		<action name="stu_*" class="studentAction" method="{1}">
+			<!-- 配置页面的跳转=========== -->
+			<!-- <result name="teacher">/alljsp/checkbox.jsp</result>
+			<result name="student">/alljsp/student.jsp</result> -->
+			
+		</action>
+	</package>
+	
+</struts>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- Struts2为了管理Action的配置，通过包进行管理。 -->
+	<!-- 配置Struts2的包 ================ -->
+	
+	<package name="user" extends="struts-default" namespace="/">
+		<!-- 配置Action================ -->
+		<!-- 定义拦截器 -->
+		<interceptors>
+			<interceptor name="userInterceptor" class="interceptor.UserInterceptor"/>
+		</interceptors>
+		<global-results>
+			<result name="login" type="redirect">/login.jsp</result>
+			<result name="error" type="redirect">/error.jsp</result>
+			 <result name="noactive"  type="redirect">/noactive.jsp</result>
+			<result name="adminlogin" type="redirect">/adminlogin.jsp</result>
+		</global-results>
+		
+		
+		<action name="u_*" class="userAction" method="{1}">
+			<!-- <result name="touser_test"  type="dispatcher">/user_test.jsp</result> -->
+	<!-- <result name="touser_test"  type="dispatcher">/user_jsp/test/user_test.jsp</result>  -->
+		<result name="toregister"  type="redirect">/register.jsp</result>
+		 <result name="touser_test"  type="redirect">/user_test.jsp</result>
+		  <result name="toindex"  type="redirect">/user_jsp/admin/index.jsp</result>
+		
+		
+		
+	<!-- 	
+		引入拦截器
+			<interceptor-ref name="userInterceptor">
+			拦截器对 >这些方法不进行拦截  excludeMethods
+			拦截器对 >这些方法进行拦截  includeMethods
+		  <param name="excludeMethods">check</param>
+	 <param name="includeMethods">check</param> 
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"/>  -->
+		
+		</action>
+	
+		
+	</package>
+	
+		
+</struts>

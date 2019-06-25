@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>   
+    		<link rel="stylesheet" type="text/css"
+	href="../../themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/template-web.js"></script>
+<script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../locale/easyui-lang-zh_CN.js"></script>
+<script src="../../code/highcharts.js"></script>
+<script src="../../code/modules/exporting.js"></script>
+<script src="../../code/modules/export-data.js"></script>
+<style>
+        canvas {
+            border: 1px solid #999;
+        }
+    </style>
+</head>
+<body>
+<canvas height="400" width="1050"></canvas>
+<script>
+
+$(function(){
+	   $.ajax({
+	  		url:"per_personCounts.action",
+	  		type:"get",
+	  		tataType:"json",
+	  		success:function(num){
+	  			console.log(num);
+	  			var jnum=JSON.parse( num );
+	  			console.log("jnum="+jnum);
+	  			console.log("jnum[0]="+jnum[0]);
+	  			console.log("jnum[1]="+jnum[1]);
+	  			var stu=parseInt(jnum[0]);
+	  			var tea=parseInt(jnum[1]);
+	  			var dean=parseInt(jnum[2]);
+	  			var user=parseInt(jnum[3]);
+	  			var other=parseInt(jnum[4]);
+	  			var sum=stu+tea+dean+user+other;
+	  			 console.log("parseInt(jnum[0])="+parseInt(jnum[0]));  
+	  				getcounts(stu,tea,dean,user,other,sum);
+	
+	  			
+	  		}
+	  	})	
+
+})
+
+
+function getcounts(stu,tea,dean,user,other,sum) {
+ 
+    var mycanvas = document.querySelector("canvas");
+    //定义饼状图构造函数=================================================================
+    function CircularChart(){
+        this.ctx = mycanvas.getContext('2d');
+        //圆心
+        this.x0 = this.ctx.canvas.width/2;
+        this.y0 = this.ctx.canvas.height/2;
+        //半径
+        this.radius = 130;
+    }
+    //添加初始化方法======================================================================
+    CircularChart.prototype.init = function(data){
+        this.circle(data);
+    };
+    //绘制饼图===========================================================================
+    CircularChart.prototype.circle = function(data){
+        var that = this;
+        var angleList = this.transformAngle(data);
+        var starAngle = 0;
+        angleList.forEach(function(item,i){
+            that.ctx.beginPath();
+            that.ctx.moveTo(that.x0,that.y0);
+            //当前结束的弧度等于这次开始的弧度+这次要转的弧度值
+            var endAngle = item.angle + starAngle;
+            that.ctx.arc(that.x0,that.y0,that.radius,starAngle,endAngle);
+            var color = that.ctx.fillStyle = getColor();
+            that.ctx.fill();
+            //调用绘制对应标题的方法
+            that.partTitle(starAngle,item,color,item.title);
+            //当前结束的弧度就是下一次开始的弧度
+            starAngle = endAngle;
+            //绘制对应的矩形介绍
+            that.introduce(i,item);
+        });
+
+    };
+    //绘制每块扇形对应的标题=================================================================
+    CircularChart.prototype.partTitle = function(starAngle,item,color,title){
+        /*1.确定伸出去的线 通过圆心点*/
+        /*2.确定伸出多长合适，计算这个点的坐标*/
+        /*3.需要根据角度和斜边的长度 确定这个点*/
+        /*3.1 使用弧度  当前扇形的起始弧度 + 当前对应的弧度值的一半 */
+        /*3.2 半径+伸出去的长度 */
+        /*3.3 利用三角函数计算伸出去的点的横纵坐标*/
+
+        this.ctx.beginPath();
+        this.ctx.moveTo(this.x0,this.y0);
+        //伸出一小段的长度
+        var outLine = 20;
+        //圆外转折点的坐标====三角函数
+        var outLineX = Math.cos(starAngle + item.angle/2)*(this.radius + outLine) + this.x0;
+        var outLineY = Math.sin(starAngle + item.angle/2)*(this.radius + outLine) + this.y0;
+        this.ctx.lineTo(outLineX,outLineY);
+        this.ctx.strokeStyle = color;
+        this.ctx.stroke();
+
+        //文字宽度
+        var widthText = this.ctx.measureText(title).width;
+        //文字样式
+        this.ctx.font = "14px Microsoft YaHei";
+        this.ctx.textBaseline = "bottom";
+        //根据圆外转折点与圆心的对比确定方向
+        if(outLineX>this.x0){
+            //绘制横线 === 根据文字宽度
+            this.ctx.lineTo(outLineX + widthText,outLineY);
+            this.ctx.textAlign = "left";
+        }else {
+            //绘制横线 === 根据文字宽度
+            this.ctx.lineTo(outLineX - widthText,outLineY);
+            this.ctx.textAlign = "right";
+        }
+        this.ctx.stroke();
+        //绘制文字
+        this.ctx.fillText(title+"（"+item.titlenum+"人）"+ "（占比："+(item.titlenum/sum)*100+"%"+"）",outLineX,outLineY);
+
+
+    };
+    //绘制矩形，注明扇形情况================================================================
+    CircularChart.prototype.introduce = function(i,item){
+        //矩形的宽高
+        var boxWidth = 50;
+        var boxHeight = 20;
+        //间隙
+        var space = 10;
+        this.ctx.fillRect(space,(space + boxHeight)*i + space,boxWidth,boxHeight);
+        //绘制对应的文字
+        this.ctx.beginPath();
+        this.ctx.textBaseline = "top";
+        this.ctx.textAlign = "left";
+        this.ctx.fillText(item.title,space + boxWidth + 10,(space + boxHeight)*i + space);
+    };
+    //将数据转换成弧度=====================================================================
+    CircularChart.prototype.transformAngle = function(data){
+        var sum = 0;
+        //总和
+        data.forEach(function(item){
+            sum = sum + item.number;
+        });
+        //转换成弧度
+        data.forEach(function(item){
+            var angle = item.number/sum*2*Math.PI;
+            item.angle = angle;
+        });
+        return data;
+    };
+    //生成随机颜色=========================================================================
+    function getColor(){
+        var r = Math.floor(Math.random()*256);
+        var g = Math.floor(Math.random()*256);
+        var b = Math.floor(Math.random()*256);
+        var color = "rgb("+r+","+g+","+b+")";
+        return color;
+    }
+    //实例化饼状图对象
+    var circularChart = new CircularChart();
+    //要描述的数据
+  
+    var data = [
+        {
+        	
+          title: "学生",
+          titlenum:stu,
+       
+          number: stu
+        },
+        {
+            title: "教师",
+            titlenum:tea,
+           
+            number: tea
+        },
+        {
+            title: "教务员",
+            titlenum:dean,
+            
+            number: dean
+        },
+        {
+            title: "一般用户",
+            titlenum:user,
+          
+            number: user
+        },
+        {
+            title: "其它",
+            titlenum:other,
+          
+            number: other
+        }
+    ];
+    //调用初始化方法
+    circularChart.init(data);
+    
+    
+}
+	
+</script>
+</body>
+</html>

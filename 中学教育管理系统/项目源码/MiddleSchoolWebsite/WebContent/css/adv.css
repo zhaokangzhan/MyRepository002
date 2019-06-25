@@ -1,0 +1,17 @@
+@charset "UTF-8";
+#first{
+		position: relative;
+		
+	}
+	#zhidao{
+		
+		background-color: #52A0E5;
+		text-align: center;
+		cursor: hand;
+		color: red;
+	}
+	#closeid{
+		text-align: center;
+		background-color: #52A0E5;
+		margin-top: 1%;
+	}

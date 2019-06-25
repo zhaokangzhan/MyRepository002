@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="domain">
+	<!-- 建立类与表关系映射 -->
+	<class name="domain.PersonCounts" table="personcounts" >
+		<!-- 建立类中的属性与表中的主键对应 -->
+		<id name="id" column="Id">
+			<generator class="native"></generator>
+		</id>
+		<!-- 建立类中的普通的属性和表的字段的对应 -->		
+		<property name="student_counts" column="student_counts"  />
+		<property name="teacher_counts" column="teacher_counts" />
+		<property name="dean_counts" column="dean_counts" />
+		<property name="user_counts" column="user_counts" />
+		<property name="other_counts" column="other_counts" />
+
+	</class>
+
+</hibernate-mapping>
